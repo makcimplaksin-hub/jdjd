@@ -1,4 +1,5 @@
-﻿#include <iostream>
+
+#include <iostream>
 #include <cstdlib>
 #include <ctime>
 using namespace std;
@@ -19,7 +20,7 @@ int main() {
     }
 
     do {
-        cout << "\n1. Вывод\n2. Сумма диаг.\n3. Обмен max\n4. Вычесть min\n0. Выход\nВыбор: ";
+        cout << "\n1. Вывод\n2. Сумма диаг.\n3. Обмен max\n4. Вычесть min\n5. Обмен строк с мин и макс эл\n0. Выход\nВыбор: ";
         cin >> choice;
 
         if (choice == 1) {
@@ -73,6 +74,29 @@ int main() {
                 }
                 cout << "Вычтено " << minVal << " из столбцов > " << minCol << endl;
             }
+        }
+
+        else if (choice == 5) {
+            int minVal = a[0][0], maxVal = a[0][0];
+            int minRow = 0, maxRow = 0;
+
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (a[i][j] < minVal) {
+                        minVal = a[i][j];
+                        minRow = i;
+                    }
+                    if (a[i][j] > maxVal) {
+                        maxVal = a[i][j];
+                        maxRow = i;
+                    }
+                }
+            }
+
+            for (int j = 0; j < n; j++) {
+                swap(a[minRow][j], a[maxRow][j]);
+            }
+            cout << "Строки с минимальным (" << minVal << ") и максимальным (" << maxVal << ") элементами обменяны\n";
         }
 
     } while (choice != 0);
